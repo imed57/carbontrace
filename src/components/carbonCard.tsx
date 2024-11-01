@@ -16,12 +16,20 @@ const shortenAddress = (address: string): string => {
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
 
-const NFTCard: React.FC<CardProps> = ({ id, owner, name, price, description, imageHash, isForSale }) => {
+const NFTCard: React.FC<CardProps> = ({ id, owner, name, price, imageHash }) => {
   return (
     <Link href={`/credits/${id}`} passHref>
       <div className={styles.creditCard} style={{ cursor: 'pointer' }}> {/* Make the card clickable */}
-        <div className={styles.image}>
-          <img src={'./credit.jpg'} alt={name} className={styles.image} />
+      <div className={styles.image}>
+          <img 
+            src={`https://tomato-reasonable-magpie-593.mypinata.cloud/ipfs/${imageHash}`} 
+            alt={name} 
+            className={styles.image} 
+            onError={(e) => {
+              // Fallback in case the image fails to load
+              e.currentTarget.src = "/credit.jpg";
+            }}
+          />
         </div>
         <div className={styles.details}>
           <h3>{name}</h3>

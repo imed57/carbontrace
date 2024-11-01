@@ -1,10 +1,8 @@
-/* listing.module.css */
-
 .formContainer {
+    margin-top: 5.7vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-color: #A8BCA1; /* Page background color */
 }
 
@@ -42,6 +40,7 @@
 }
 
 .formGroup input {
+    font-family: "Orbitron"; /* Custom font */
     padding: 10px;
     font-size: 16px;
     width: 90%; /* Adjusted width to leave space for margins */
@@ -57,7 +56,7 @@
     color: #1E352F; /* Button text color */
     background-color: #A8BCA1; /* Button background color */
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     margin-top: 10px; /* Space above button */
     width: 93%; /* Same width as the input */
@@ -67,6 +66,38 @@
 .button:disabled {
     background-color: #ccc; /* Disabled button color */
 }
+
+.uploadButton {
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    color: #1E352F;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #A8BCA1;
+    transition: all 0.3s;
+    margin:10px 0 0 15px; /* Additional spacing */
+    width: 20%;
+
+}
+
+.uploadButton:hover {
+    background-color: #A8BCA1;
+    color: #1E352F;
+
+}
+
+.inputuploadButton {
+    display: none; /* Hides the default input */
+}
+
+.fileName {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #A8BCA1;
+  }
 
 /* Responsive Styles */
 @media (max-width: 600px) {

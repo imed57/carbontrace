@@ -1,11 +1,16 @@
-import { useAccount } from 'wagmi'; // Assuming you're using wagmi for wallet connection
+import { useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
-import * as blockies from 'ethereum-blockies'; // Optional: for generating the avatar
-import CreditsGrid from '../components/creditGrid'; // Import your CreditsGrid component
+import * as blockies from 'ethereum-blockies';
 import axios from 'axios';
+import UserDialog from '../components/userDialog';
+import CreditCarousel from '../components/creditCarousel';
+import styles from '../styles/account.module.css';
+import { useRouter } from 'next/router';
 
 export const AccountPage = () => {
-    const { address } = useAccount(); // Get the connected wallet address
+    const { address } = useAccount();
+    const router = useRouter();
+
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState({
         name: '',
@@ -14,8 +19,10 @@ export const AccountPage = () => {
         address: '',
         city: '',
         postcode: '',
+        profilePicture: '',
     });
     const [message, setMessage] = useState<string | null>(null);
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect(() => {
         if (address) {
@@ -26,61 +33,88 @@ export const AccountPage = () => {
             }).toDataURL();
             setAvatarUrl(icon);
 
-            // Fetch or create user information based on wallet address
             axios.get(`http://localhost:4000/users/user/${address}`)
-                .then(response => setUserInfo(prev => ({ ...prev, ...response.data })))
+                .then(response => {
+                    setUserInfo(prev => ({ ...prev, ...response.data }));
+                })
                 .catch(() => setMessage("Failed to load or create user information."));
         }
     }, [address]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setUserInfo(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = async () => {
+    const handleUpdateUserInfo = async (formData: FormData) => {
         try {
-            await axios.put(`http://localhost:4000/users/user/${address}`, userInfo);
+            const response = await axios.put(`http://localhost:4000/users/user/${address}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            setUserInfo(prev => ({ ...prev, ...response.data }));
             setMessage("Profile updated successfully.");
+            window.location.reload();
         } catch (error) {
+            console.error("Error updating profile:", error);
             setMessage("An error occurred while updating your profile.");
+            if(error.response.data.error) setMessage(error.response.data.error);
         }
     };
 
-    if (!address) {
-        return <p>No wallet connected</p>;
+    const handleSubmit = (userInfo: FormData) => {
+        handleUpdateUserInfo(userInfo);
+    };
+
+    if(!address) {
+        router.push('/home');
     }
+    
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
-            {avatarUrl && (
-                <img
-                    src={avatarUrl}
-                    alt="Wallet Avatar"
-                    style={{
-                        width: '150px',
-                        height: '150px',
-                        borderRadius: '50%',
-                        marginBottom: '20px',
-                    }}
-                />
-            )}
-            <p style={{ fontSize: '18px', wordBreak: 'break-word' }}>{address}</p>
+        <div className={styles.accountPage}>
+            <div className={styles.profileSection}>
+                {userInfo.profilePicture ? (
+                    <img
+                        src={`data:image/jpg;base64,${userInfo.profilePicture}`}
+                        alt="Profile Avatar"
+                        className={styles.avatar}
+                    />
+                ) : (
+                    avatarUrl && (
+                        <img
+                            src={avatarUrl}
+                            alt="Wallet Avatar"
+                            className={styles.avatar}
+                        />
+                    )
+                )}
+                <div className={styles.userInfo}>
+                    <p className={styles.address}>{address}</p>
+                    <p><strong>Name:</strong> {userInfo.name}</p>
+                    <p><strong>Email:</strong> {userInfo.email}</p>
+                    <p><strong>Phone:</strong> {userInfo.phone}</p>
+                    <p><strong>City:</strong> {userInfo.city}</p>
+                    <p><strong>Postcode:</strong> {userInfo.postcode}</p>
+                    <button className={styles.modifyButton} onClick={() => setOpenDialog(true)}>
+                        Modify Infos
+                    </button>
+                </div>
+            </div>
 
-            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-                <input type="text" name="name" value={userInfo.name} onChange={handleChange} placeholder="Name" />
-                <input type="email" name="email" value={userInfo.email} onChange={handleChange} placeholder="Email" />
-                <input type="text" name="phone" value={userInfo.phone} onChange={handleChange} placeholder="Phone" />
-                <input type="text" name="address" value={userInfo.address} onChange={handleChange} placeholder="Address" />
-                <input type="text" name="city" value={userInfo.city} onChange={handleChange} placeholder="City" />
-                <input type="text" name="postcode" value={userInfo.postcode} onChange={handleChange} placeholder="PostCode" />
-                <button type="submit">Update Profile</button>
-            </form>
+            <UserDialog
+                open={openDialog}
+                onClose={() => setOpenDialog(false)}
+                onSubmit={handleSubmit}
+                userInfo={userInfo}
+            />
 
-            {message && <p>{message}</p>}
+            {message && <p className={styles.message}>{message}</p>}
 
-            <div style={{ width: '100%' }}>
-                <CreditsGrid address={address} />
+            <div className={styles.carouselSection}>
+                <h3>Credits Listed for Sale</h3>
+                <CreditCarousel address={address} forSale={true} />
+            </div>
+
+            <div className={styles.carouselSection}>
+                <h3>Credits Purchased</h3>
+                <CreditCarousel address={address} forSale={false} />
             </div>
         </div>
     );
