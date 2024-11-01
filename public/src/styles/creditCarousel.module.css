@@ -1,0 +1,45 @@
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.creditsWrapper {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.creditsGrid {
+    display: flex;
+    gap: 20px;
+}
+
+.arrow {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    user-select: none;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    margin: 0 10px;
+}
+
+.leftArrow {
+    /* Add specific styles if needed */
+}
+
+.rightArrow {
+    /* Add specific styles if needed */
+}
+
+.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}

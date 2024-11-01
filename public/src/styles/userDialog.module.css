@@ -1,0 +1,200 @@
+.dialog {
+    width: 100%;
+    max-width: 60vw;
+    max-height: 80vh;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+/* Custom scrollbar */
+.dialog::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dialog::-webkit-scrollbar-track {
+    background: #1E352F;
+}
+
+.dialog::-webkit-scrollbar-thumb {
+    background-color: #A8BCA1;
+    border-radius: 6px;
+    border: 2px solid #1E352F; 
+}
+
+.dialogTitle {
+    font-family: "Orbitron", sans-serif !important;
+    background-color: #1E352F;
+    color: #A8BCA1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+.dialogContent {
+    font-family: "Orbitron", sans-serif;
+    padding: 20px;
+    background-color: #1E352F;
+    max-height: 80vh; 
+    overflow-y: auto; 
+}
+
+.dialogContent::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dialogContent::-webkit-scrollbar-track {
+    background: #1E352F;
+}
+
+.dialogContent::-webkit-scrollbar-thumb {
+    background-color: #A8BCA1;
+    border-radius: 6px;
+    border: 2px solid #1E352F;
+}
+
+.dialogActions {
+    display: flex;
+    justify-content: right;
+    background-color: #1E352F;
+    padding: 10px;
+}
+
+.buttonUpdate {
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    margin-inline: 1vw;
+    border-radius: 8px;
+    background-color: #A8BCA1;
+    color: #1E352F;
+    padding: 5px 15px;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #A8BCA1;
+    transition: all 0.3s;
+}
+
+.modifyButton:hover {
+    color: #A8BCA1;
+    border-color: #A8BCA1;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 5px #A8BCA1;
+}
+
+.buttonCancel {
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background-color: #A8BCA1;
+    color: #1E352F;
+    padding: 5px 15px;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #A8BCA1;
+    transition: all 0.3s;
+}
+
+.buttonCancel:hover {
+    background-color: #8FA58A;
+}
+
+.buttonUpdate:hover {
+    background-color: #8FA58A;
+}
+
+.dialogContent {
+    padding: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 16px;
+}
+
+.label {
+    margin-bottom: 8px;
+    color: #A8BCA1;
+    display: block;
+}
+
+.input {
+    border: 1px solid #A8BCA1;
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: 1vw;
+    width: 90%;
+    font-family: "Orbitron", sans-serif !important;
+    font-size: 16px;
+    color: #333;
+}
+
+.input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.inputuploadButton {
+    display: none;
+}
+
+.labelProfile {
+    margin-bottom: 20px;
+    color: #A8BCA1;
+    display: block;
+}
+
+.uploadButton {
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background-color: #A8BCA1;
+    color: #1E352F;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #A8BCA1;
+    transition: all 0.3s;
+    margin-left: 20px;
+}
+
+.uploadButton:hover {
+    background-color: #1E352F;
+    color: #A8BCA1;
+}
+
+@media (max-width: 768px) {
+    .dialog {
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+
+    .dialogTitle {
+        font-size: 1.2rem;
+    }
+
+    .buttonUpdate,
+    .buttonCancel {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .uploadButton {
+        margin-left: 0;
+        padding: 0.4rem 0.8rem;
+        font-size: 12px;
+    }
+}

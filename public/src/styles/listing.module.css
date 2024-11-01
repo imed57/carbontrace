@@ -1,0 +1,120 @@
+.formContainer {
+    margin-top: 5.7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A8BCA1; /* Page background color */
+}
+
+.formSection {
+    background-color: #1E352F; /* Form background color */
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 40vw;
+    width: 100%;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+    color: #A8BCA1; /* Title color */
+}
+
+.creditForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-size: 14px;
+    margin-bottom: 5px; /* Keep some space below the label */
+    color: #A8BCA1; /* Label color */
+}
+
+.formGroup input {
+    font-family: "Orbitron"; /* Custom font */
+    padding: 10px;
+    font-size: 16px;
+    width: 90%; /* Adjusted width to leave space for margins */
+    margin: 0 auto; /* Center the input and add space on both sides */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    font-family: "Orbitron"; /* Custom font */
+    padding: 12px;
+    font-size: 16px;
+    color: #1E352F; /* Button text color */
+    background-color: #A8BCA1; /* Button background color */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px; /* Space above button */
+    width: 93%; /* Same width as the input */
+    margin: 0 auto; /* Center the button and add space on both sides */
+}
+
+.button:disabled {
+    background-color: #ccc; /* Disabled button color */
+}
+
+.uploadButton {
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    color: #1E352F;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #A8BCA1;
+    transition: all 0.3s;
+    margin:10px 0 0 15px; /* Additional spacing */
+    width: 20%;
+
+}
+
+.uploadButton:hover {
+    background-color: #A8BCA1;
+    color: #1E352F;
+
+}
+
+.inputuploadButton {
+    display: none; /* Hides the default input */
+}
+
+.fileName {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #A8BCA1;
+  }
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .formSection {
+        padding: 20px; /* Adjust padding on smaller screens */
+    }
+
+    .title {
+        font-size: 20px; /* Slightly smaller title */
+    }
+
+    .formGroup label {
+        font-size: 12px; /* Smaller font for labels */
+    }
+
+    .button {
+        padding: 10px; /* Smaller button padding */
+        font-size: 14px; /* Smaller button font size */
+    }
+}
