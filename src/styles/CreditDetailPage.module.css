@@ -1,0 +1,125 @@
+/* Conteneur principal */
+.detailContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 5%;
+    box-sizing: border-box;
+}
+
+/* Section pour l'image */
+.imageSection {
+    flex: 1;
+    max-width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Section pour les informations */
+.infoSection {
+    flex: 1;
+    max-width: 45%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+.infoSection p {
+    font-size: 1.1rem;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #2d7a2e;
+}
+
+
+.buyButton {
+    font-size: 1rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #1E352F; /* Couleur de fond identique au footer */
+    color: #ffffff;
+    font-family: "Orbitron", sans-serif; /* Police Orbitron pour correspondre au site */
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.4s ease; /* Transition douce pour hover */
+    margin-top: 20px;
+}
+
+.buyButton:hover {
+    background-color: #155128; /* Couleur plus foncée au survol */
+    transform: scale(1.05); /* Légère augmentation de taille pour l'animation */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
+}
+
+
+
+/* Responsive pour écrans moyens (tablettes) */
+@media (max-width: 1024px) {
+    .detailContainer {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .imageSection, .infoSection {
+        max-width: 90%;
+    }
+
+    .image {
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .infoSection p {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive pour petits écrans (mobiles) */
+@media (max-width: 600px) {
+    .detailContainer {
+        padding: 10px;
+    }
+
+    .imageSection, .infoSection {
+        max-width: 100%;
+    }
+
+    .image {
+        max-width: 100%;
+        border-radius: 6px;
+    }
+
+    .infoSection p {
+        font-size: 0.9rem;
+    }
+
+    .price {
+        font-size: 1.1rem;
+    }
+
+    .buyButton {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}

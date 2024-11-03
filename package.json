@@ -29,7 +29,7 @@
         "fs": "^0.0.1-security",
         "jotai-immer": "^0.4.1",
         "moralis": "^2.27.2",
-        "next": "^12.1.6",
+        "next": "^12.3.4",
         "next-transpile-modules": "^10.0.1",
         "patch-package": "^8.0.0",
         "react": "18.1.0",

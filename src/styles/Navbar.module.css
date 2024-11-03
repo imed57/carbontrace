@@ -1,119 +1,138 @@
+/* Styles généraux de la navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #1E352F;
-    width: 100vw; /* Adjusted for better responsiveness */
-    background-color: #1E352F;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #1E352F;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 998;
 }
 
 .homeImage {
-    height: 40px; /* Smaller height for better fit on mobile */
-    cursor: pointer;
-    margin-right: auto;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px; /* Équilibre les marges autour du logo */
 }
 
+/* Menu de navigation */
 .navItems {
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    font-weight: 600;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navItem {
-    font-size: 18px;
-    padding: 5px 10px;
-    cursor: pointer;
-    position: relative;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    margin-inline: 1vw;
-    color: #A8BCA1;
+  font-size: 18px;
+  margin: 0 15px;
+  color: #A8BCA1;
 }
 
 .navItem a {
-    text-decoration: none;
-    color: #A8BCA1;
+  text-decoration: none;
+  color: inherit;
 }
 
 .navItem:hover {
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 5px #A8BCA1;
-    border: 2px solid transparent;
+  font-weight: bold;
 }
 
-.active {
-    border-radius: 10px;
-    border: 2px solid #A8BCA1;
-    padding: 5px 10px;
-    box-shadow: 0 0 10px 5px #A8BCA1;
+.active a {
+  color: #ffffff;
+  font-weight: bold;
 }
 
-.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: black;
-    width: 100%;
+/* Bouton du menu burger */
+.menuIcon {
+  display: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 20px;
+  z-index: 999;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #A8BCA1;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Animation du menu burger */
+.bar.change:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.bar.change:nth-child(2) {
+  opacity: 0;
+}
+
+.bar.change:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;       
-        align-items: flex-start;
-        padding: 10px;
-    }
+@media (max-width: 1024px) {
+  .menuIcon {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .homeImage {
-        height: 30px;           
-    }
+  .navItems {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%; /* Ajustez selon vos préférences */
+    height: 100vh;
+    background-color: #1E352F;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease-in-out;
+    z-index: 998;
+    overflow-y: auto;
+  }
 
-    .navItems {
-        flex-direction: column;        
-        width: 100%;                    /* Full width for mobile */
-        align-items: flex-start;        /* Align items to the left */
-        margin-top: 10px;
-    }
+  .navActive {
+    right: 0;
+  }
 
-    .navItem {
-        font-size: 16px;               /* Smaller font size for mobile */
-        padding: 8px 15px;     
-        margin-inline: 0;    
-    }
+  .navItem {
+    margin: 15px 0;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
 
-    .navItem:hover {
-        font-size: 16px;           
-    }
+  /* Cacher le logo si nécessaire sur mobile */
+  /* .homeImage {
+    display: none;
+  } */
 }
 
-@media (max-width: 480px) {
-    .navbar {
-        padding: 8px;
-    }
+@media (min-width: 1025px) {
+  .menuIcon {
+    display: none;
+  }
 
-    .homeImage {
-        height: 25px;                
-    }
+  .navItems {
+    display: flex;
+    justify-content: right; /* Centre les éléments horizontalement */
+    align-items: center;
+    flex-grow: 1; /* Permet à .navItems de prendre l'espace disponible */
+  }
 
-    .navItem {
-        font-size: 14px;            
-        padding: 6px 12px;
-    }
+  .navItem {
+    margin: 0 15px;
+  }
 
-    .navItem:hover {
-        box-shadow: none;              
-    }
+  .homeImage {
+    margin-left: 20px;
+    margin-right: 20px; /* Équilibre les marges autour du logo */
+  }
 }

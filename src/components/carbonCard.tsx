@@ -19,14 +19,14 @@ const shortenAddress = (address: string): string => {
 const NFTCard: React.FC<CardProps> = ({ id, owner, name, price, imageHash }) => {
   return (
     <Link href={`/credits/${id}`} passHref>
-      <div className={styles.creditCard} style={{ cursor: 'pointer' }}> {/* Make the card clickable */}
-      <div className={styles.image}>
+      <div className={styles.creditCard} style={{ cursor: 'pointer' }}>
+        <div className={styles.image}>
           <img 
             src={`https://tomato-reasonable-magpie-593.mypinata.cloud/ipfs/${imageHash}`} 
             alt={name} 
             className={styles.image} 
             onError={(e) => {
-              // Fallback in case the image fails to load
+              // Image de secours si le chargement échoue
               e.currentTarget.src = "/credit.jpg";
             }}
           />
